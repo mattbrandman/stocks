@@ -5,7 +5,7 @@ const Post = ({ title = 'My First Blog Post', text = 'Hello World!' }) => (
   <div className="container">
     <div className="row justify-content-md-center">
       <div className="col-6">
-        <h1> { title } </h1>
+        <h1> <strong> { title } </strong> </h1>
         <p>{ text } </p>
       </div>
     </div>
