@@ -1,10 +1,10 @@
 import createReducer from './createReducer';
 
 const actionHandler = {
-  ADD_POST: (state, action) => Object.assign({}, state, [...state, action.post]),
+  ADD_STOCK: (state, action) => Object.assign({}, state, [...state, action.post]),
 };
 const initialState = {
-  posts: [],
+  stocks: [],
 };
 
 const blogApp = createReducer(initialState, actionHandler);

@@ -1,24 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Post = ({ title = 'My First Blog Post', text = 'Hello World!' }) => (
+const Stock = ({ name = 'My First Blog Post', symbol = 'XYZ', price = 10 }) => (
   <div className="container">
     <div className="row justify-content-md-center">
       <div className="col-6">
-        <h1> <strong> { title } </strong> </h1>
-        <p>{ text } </p>
+        <h1> <strong> { name } </strong> </h1>
+        <p>{ symbol } { price } </p>
       </div>
     </div>
   </div>
 );
 
-Post.propTypes = {
-  title: PropTypes.string,
-  text: PropTypes.string,
+Stock.propTypes = {
+  name: PropTypes.string,
+  symbol: PropTypes.string,
+  price: PropTypes.number,
 };
 
-Post.defaultProps = {
-  title: 'My First Blog Post',
-  text: 'Hello World!',
+Stock.defaultProps = {
+  name: 'My First Blog Post',
+  symbol: 'Hello World!',
+  price: 10,
 };
-export default Post;
+export default Stock;
