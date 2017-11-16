@@ -19,12 +19,12 @@ export default class BlogNav extends React.Component {
     return (
       <div>
         <Navbar color="dark" dark expand="md">
-          <NavbarBrand href="/">The Curious Programmer</NavbarBrand>
+          <NavbarBrand href="/"> Stock Trader </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+                <NavLink href="/components/">Buy Stocks</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
