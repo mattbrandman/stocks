@@ -6,22 +6,24 @@ import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
 import { Route } from 'react-router';
 import logger from 'redux-logger';
-import Stock from './components/stock';
+import createSagaMiddleware from 'redux-saga';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import stockReducer from './reducers/stockReducer';
 import BlogNav from './components/navbar';
 import Dashboard from './components/dashboard';
+import StockContainer from './containers/stockcontainer';
+import { userReducer } from './reducers/userReducer';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
+const sagaMiddleware = createSagaMiddleware;
 const store = createStore(
   combineReducers({
-    stockReducer,
     router: routerReducer,
+    userReducer,
   }),
-  applyMiddleware(middleware, logger),
+  applyMiddleware(middleware, logger, sagaMiddleware),
 );
 ReactDOM.render(
   <Provider store={store}>
@@ -29,6 +31,7 @@ ReactDOM.render(
       <div>
         <Route path="/" component={BlogNav} />
         <Route exact path="/" component={Dashboard} />
+        <Route path="/stocks/" component={StockContainer} />
       </div>
     </ConnectedRouter>
   </Provider>,

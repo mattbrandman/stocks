@@ -1,17 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StockDisplay from './stockdisplay';
+import Stock from './stock';
 
 const StockListDisplay = ({ stock_list, onStockClick }) => (
   <div className="container">
     <div className="row">
       <div className="col-12">
         <div className="card">
-          <h3> Stock Search </h3>
-          <input type="text" className="form-control" id="hi" />
-          <ul className="list-group list-group-flush mt-2">
-            { stock_list.map(stock => <StockDisplay key={stock.id} {...stock} onClick={() => onStockClick(stock.id)} />) }
-          </ul>
+          {
+            stock_list.map(stock =>
+              (<Stock
+                key={stock.id}
+                {...stock}
+                onClick={
+                  () => onStockClick(stock.id)
+                        }
+              />))
+          }
         </div>
       </div>
     </div>

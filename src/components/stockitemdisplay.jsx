@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const StockDisplay = ({id, name, symbol, price, onClick }) => (
+const StockItemDisplay = ({ id, name, symbol, price, onClick}) => (
   <button onClick={onClick} className="list-group-item">
     { name }, {`'${symbol}'`}, : { price }
   </button>
 );
 
-StockDisplay.propTypes = {
+StockItemDisplay.propTypes = {
   name: PropTypes.string,
   id: PropTypes.number,
   symbol: PropTypes.string,
@@ -15,11 +15,11 @@ StockDisplay.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-StockDisplay.defaultProps = {
+StockItemDisplay.defaultProps = {
   name: 'N/A',
   symbol: 'N/A',
   id: -1,
   price: 0,
 };
 
-export default StockDisplay;
+export default StockItemDisplay;

@@ -10,7 +10,9 @@ const actionHandler = {
 };
 
 const initialState = {
-  stocks: [],
+  stocks: [
+    { id: 3, name: 'hi', symbol: 'bob', price: 10 },
+  ],
 };
 
 const stockReducer = createReducer(initialState, actionHandler);
