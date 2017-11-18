@@ -1,11 +1,10 @@
 const LOGIN_ATTEMPT = 'LOGIN_ATTEMPT';
 const GOT_USER = 'GOT_USER';
 
-function loginUser(username, password) {
+function loginUser(user) {
   return {
     type: LOGIN_ATTEMPT,
-    username,
-    password,
+    user,
   };
 }
 

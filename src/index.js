@@ -15,10 +15,13 @@ import BlogNav from './components/navbar';
 import Dashboard from './components/dashboard';
 import StockContainer from './containers/stockcontainer';
 import { userReducer } from './reducers/userReducer';
+import LoginContainer from './containers/logincontainer';
+import mySaga from './sagas/login';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
-const sagaMiddleware = createSagaMiddleware;
+const sagaMiddleware = createSagaMiddleware();
+
 const store = createStore(
   combineReducers({
     router: routerReducer,
@@ -27,6 +30,8 @@ const store = createStore(
   }),
   applyMiddleware(middleware, logger, sagaMiddleware),
 );
+
+sagaMiddleware.run(mySaga);
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
@@ -34,6 +39,7 @@ ReactDOM.render(
         <Route path="/" component={BlogNav} />
         <Route exact path="/" component={Dashboard} />
         <Route path="/stocks/" component={StockContainer} />
+        <Route path="/login/" component={LoginContainer} />
       </div>
     </ConnectedRouter>
   </Provider>,

@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const StockItemDisplay = ({ id, name, symbol, price, onClick}) => (
+const StockItemDisplay = ({
+  id, name, symbol, price, onClick,
+}) => (
   <button onClick={onClick} className="list-group-item">
     { name }, {`'${symbol}'`}, : { price }
   </button>
