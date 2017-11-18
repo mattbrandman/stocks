@@ -13,13 +13,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onStockClick: (id) => {
-      dispatch(goToStock(id));
-    },
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  onStockClick: (id) => {
+    dispatch(goToStock(id));
+  },
+});
 
 const StockListDisplayContainer = connect(mapStateToProps, mapDispatchToProps)(StockListDisplay);
 
