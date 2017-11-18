@@ -7,8 +7,9 @@ import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-r
 import { Route } from 'react-router';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
+import 'bootstrap/dist/css/bootstrap.css';
+import { reducer as formReducer } from 'redux-form';
 import './index.css';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import BlogNav from './components/navbar';
 import Dashboard from './components/dashboard';
@@ -22,6 +23,7 @@ const store = createStore(
   combineReducers({
     router: routerReducer,
     userReducer,
+    form: formReducer,
   }),
   applyMiddleware(middleware, logger, sagaMiddleware),
 );
