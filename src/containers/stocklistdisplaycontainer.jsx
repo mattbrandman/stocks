@@ -5,13 +5,18 @@ import { connect } from 'react-redux';
 import StockListDisplay from '../components/stocklistdisplay';
 import { stockSchema } from '../reducers/userReducer';
 import { getUsers } from '../actions/user';
+import Stock from '../components/stock';
 
 function getStockList(state) {
   const userStocks = state.userReducer.stocks;
   const entities = { stocks: state.userReducer.stock };
-  let forCurrent = state.userReducer.stock || [];
+  let forCurrent = state.userReducer.stock;
   const hydratedStocks = denormalize(userStocks, [stockSchema], entities);
-  forCurrent = Object.values(forCurrent);
+  try {
+    forCurrent = Object.values(forCurrent);
+  } catch (e) {
+    forCurrent = [];
+  }
   return forCurrent;
 }
 
@@ -44,6 +49,6 @@ export default connect(
 
 StockListDisplayContainer.propTypes = {
   getUsers: PropTypes.func.isRequired,
-  stock_list: PropTypes.arrayOf(StockListDisplay).isRequired,
+  stock_list: PropTypes.arrayOf(Stock).isRequired,
 };
 

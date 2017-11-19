@@ -10,7 +10,7 @@ const StockListDisplay = ({ stock_list }) => (
           {
             stock_list.map(stock =>
               (<Stock
-                key={stock.id}
+                key={stock.name}
                 {...stock}
               />))
           }

@@ -8,6 +8,10 @@ function loginUser(user) {
     .end((err, res) => res.body);
 }
 
+function sgetUsers() {
+ return request.get('https://stocks.rossfrank.party/api/users');
+}
+
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* fetchUser(action) {
   try {
@@ -19,9 +23,8 @@ function* fetchUser(action) {
 }
 
 function* getUsers() {
-  const getAllUsers = request.get('https://stocks.rossfrank.party/api/users');
   try {
-    const response = yield getAllUsers;
+    const response = yield call(sgetUsers);
     const users = response.body.data;
     console.log(users);
     yield put({ type: 'GOT_USERS', users });
