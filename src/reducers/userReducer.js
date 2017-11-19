@@ -1,9 +1,9 @@
 import { normalize, schema } from 'normalizr';
 import createReducer from './createReducer';
 
-export const stockSchema = new schema.Entity('stocks', {}, { idAttribute: 'name' });
+export const stockSchema = new schema.Entity('stock', {}, { idAttribute: 'name' });
 export const userSchema = new schema.Entity('users', {
-  stocks: [stockSchema],
+  stock: [stockSchema],
 });
 
 const actionHandler = {
@@ -14,14 +14,14 @@ const actionHandler = {
     Object.assign({}, state, { user, stocks });
   },
   UPDATE_STOCKS: (state, action) => Object.assign({}, state, { stocks: action.stocks }),
+  GOT_USERS: (state, action) => {
+    const normalizedData = normalize(action.users, [userSchema]);
+    const { users, stock } = normalizedData.entities;
+    return Object.assign({}, state, { users, stock });
+  },
+
 };
-const normalizedDatas = normalize({ username: 'test', id: 1, stocks: [{ name: 'nv', price: 100 }, { name: 'fb', price: 200 }] }, userSchema);
-const { users, stocks } = normalizedDatas.entities;
-const initialState = {
-  logged_in: false,
-  users,
-  stocks,
-};
+const initialState = {};
 
 export const userReducer = createReducer(initialState, actionHandler);
 

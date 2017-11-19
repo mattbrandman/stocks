@@ -1,24 +1,49 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { denormalize } from 'normalizr';
 import { connect } from 'react-redux';
 import StockListDisplay from '../components/stocklistdisplay';
-import goToStock from '../actions/routing';
 import { stockSchema } from '../reducers/userReducer';
+import { getUsers } from '../actions/user';
+
+function getStockList(state) {
+  const userStocks = state.userReducer.stocks;
+  const entities = { stocks: state.userReducer.stock };
+  let forCurrent = state.userReducer.stock || [];
+  const hydratedStocks = denormalize(userStocks, [stockSchema], entities);
+  forCurrent = Object.values(forCurrent);
+  return forCurrent;
+}
 
 const mapStateToProps = (state) => {
-  const userStocks = state.userReducer.users[1].stocks;
-  const entities = { stocks: state.userReducer.stocks };
-  const hydratedStocks = denormalize(userStocks, [stockSchema], entities);
   return {
-    stock_list: hydratedStocks,
+    stock_list: getStockList(state),
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  onStockClick: (id) => {
-    dispatch(goToStock(id));
+  getUsers: () => {
+    dispatch(getUsers());
   },
 });
 
-const StockListDisplayContainer = connect(mapStateToProps, mapDispatchToProps)(StockListDisplay);
+class StockListDisplayContainer extends React.Component {
+  componentDidMount() {
+    this.props.getUsers();
+  }
+  render() {
+    return (
+      <StockListDisplay stock_list={this.props.stock_list}/>
+    );
+  }
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(StockListDisplayContainer);
 
-export default StockListDisplayContainer;
+StockListDisplayContainer.propTypes = {
+  getUsers: PropTypes.func.isRequired,
+  stock_list: PropTypes.arrayOf(StockListDisplay).isRequired,
+};
+

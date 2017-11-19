@@ -16,7 +16,7 @@ import Dashboard from './components/dashboard';
 import StockContainer from './containers/stockcontainer';
 import { userReducer } from './reducers/userReducer';
 import LoginContainer from './containers/logincontainer';
-import mySaga from './sagas/login';
+import rootSaga from './sagas/login';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
@@ -31,7 +31,7 @@ const store = createStore(
   applyMiddleware(middleware, logger, sagaMiddleware),
 );
 
-sagaMiddleware.run(mySaga);
+sagaMiddleware.run(rootSaga);
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>

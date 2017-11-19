@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Stock from './stock';
 
-const StockListDisplay = ({ stock_list, onStockClick }) => (
+const StockListDisplay = ({ stock_list }) => (
   <div className="container">
     <div className="row">
       <div className="col-12">
@@ -12,9 +12,6 @@ const StockListDisplay = ({ stock_list, onStockClick }) => (
               (<Stock
                 key={stock.id}
                 {...stock}
-                onClick={
-                  () => onStockClick(stock.id)
-                        }
               />))
           }
         </div>
@@ -33,7 +30,6 @@ StockListDisplay.propTypes = {
     symbol: PropTypes.string,
     price: PropTypes.number,
   })),
-  onStockClick: PropTypes.func.isRequired,
 };
 
 StockListDisplay.defaultProps = {
