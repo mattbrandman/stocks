@@ -38,7 +38,10 @@ class StockListDisplayContainer extends React.Component {
   }
   render() {
     return (
-      <StockListDisplay stock_list={this.props.stock_list}/>
+      <div className="col-6">
+        <h3> Stocks </h3>
+        <StockListDisplay stock_list={this.props.stock_list}/>
+      </div>
     );
   }
 }

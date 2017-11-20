@@ -12,11 +12,12 @@ import { reducer as formReducer } from 'redux-form';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import BlogNav from './components/navbar';
-import Dashboard from './components/dashboard';
-import StockContainer from './containers/stockcontainer';
+import UserStockDisplay from './containers/userstockcontainer';
+import StockListDisplayContainer from './containers/stocklistdisplaycontainer';
 import { userReducer } from './reducers/userReducer';
 import LoginContainer from './containers/logincontainer';
 import rootSaga from './sagas/login';
+import UserList from './components/userList';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
@@ -37,8 +38,13 @@ ReactDOM.render(
     <ConnectedRouter history={history}>
       <div>
         <Route path="/" component={BlogNav} />
-        <Route exact path="/" component={Dashboard} />
-        <Route path="/stocks/" component={StockContainer} />
+        <div className="container">
+          <div className="row">
+            <Route path="/users/:id" component={UserStockDisplay} />
+            <Route exact path="/" component={StockListDisplayContainer} />
+            <Route path="/" component={UserList} />
+          </div>
+        </div>
         <Route path="/login/" component={LoginContainer} />
       </div>
     </ConnectedRouter>

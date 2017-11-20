@@ -1,7 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { getUsers } from '../actions/user';
 
-export default class BlogNav extends React.Component {
+const mapDispatchToProps = dispatch => ({
+  getUsers: () => {
+    dispatch(getUsers());
+  },
+});
+class BlogNav extends React.Component {
   constructor(props) {
     super(props);
 
@@ -10,6 +17,11 @@ export default class BlogNav extends React.Component {
       isOpen: false,
     };
   }
+  componentDidMount() {
+    this.props.getUsers();
+  }
+
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen,
@@ -19,12 +31,11 @@ export default class BlogNav extends React.Component {
     return (
       <div>
         <Navbar color="dark" dark expand="md">
-          <NavbarBrand href="/"> Stock Trader </NavbarBrand>
+          <NavbarBrand href="/"> Stock Tracker </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Buy Stocks</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -33,3 +44,5 @@ export default class BlogNav extends React.Component {
     );
   }
 }
+
+export default connect(null, mapDispatchToProps)(BlogNav);

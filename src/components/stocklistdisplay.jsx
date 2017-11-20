@@ -3,20 +3,14 @@ import PropTypes from 'prop-types';
 import Stock from './stock';
 
 const StockListDisplay = ({ stock_list }) => (
-  <div className="container">
-    <div className="row">
-      <div className="col-12">
-        <div className="card">
-          {
-            stock_list.map(stock =>
-              (<Stock
-                key={stock.name}
-                {...stock}
-              />))
-          }
-        </div>
-      </div>
-    </div>
+  <div className="card-deck">
+    {
+      stock_list.map(stock =>
+        (<Stock
+          key={stock.name}
+          {...stock}
+        />))
+    }
   </div>
 );
 
