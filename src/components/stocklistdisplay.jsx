@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Stock from './stock';
 
 const StockListDisplay = ({ stock_list }) => (
-  <div className="card-deck">
+  <div className="card-columns">
     {
       stock_list.map(stock =>
         (<Stock

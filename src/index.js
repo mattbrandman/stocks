@@ -6,6 +6,7 @@ import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
 import { Route } from 'react-router';
 import logger from 'redux-logger';
+// import { Socket } from 'phoenix-channels';
 import createSagaMiddleware from 'redux-saga';
 import 'bootstrap/dist/css/bootstrap.css';
 import { reducer as formReducer } from 'redux-form';
@@ -18,6 +19,7 @@ import { userReducer } from './reducers/userReducer';
 import LoginContainer from './containers/logincontainer';
 import rootSaga from './sagas/login';
 import UserList from './components/userList';
+
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
