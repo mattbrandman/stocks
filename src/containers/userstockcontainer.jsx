@@ -10,7 +10,7 @@ import Stock from '../components/stock';
 function getStockList(state, ownparams) {
   const uId = ownparams.match.params.id;
   if(state.userReducer.users === undefined) {
-    return []
+    return [];
   }
   let userStocks = state.userReducer.users[uId].stock;
   const entities = { stock: state.userReducer.stock };

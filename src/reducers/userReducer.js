@@ -11,7 +11,7 @@ const actionHandler = {
   GOT_USER: (state, action) => {
     const normalizedData = normalize(action.data, userSchema);
     const { user, stocks } = normalizedData.entities;
-    Object.assign({}, state, { user, stocks });
+    Object.assign({}, state, { currentUser: user });
   },
   UPDATE_STOCKS: (state, action) => Object.assign({}, state, { stocks: action.stocks }),
   GOT_USERS: (state, action) => {
@@ -19,6 +19,7 @@ const actionHandler = {
     const { users, stock } = normalizedData.entities;
     return Object.assign({}, state, { users, stock });
   },
+  SET_CURRENT_USER: (state, action) => Object.assign({}, state, { current_user: action.user }),
 
 };
 const initialState = {};

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import { getUsers } from '../actions/user';
@@ -36,6 +37,10 @@ class BlogNav extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
+                <NavLink tag={Link} to="/login">Login</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/newusers"> Create User </NavLink>
               </NavItem>
             </Nav>
           </Collapse>

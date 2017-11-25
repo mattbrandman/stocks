@@ -9,7 +9,7 @@ const UserList = ({ users, handleClick }) => (
   {
   users.map(user =>
     (
-      <button onClick={() => handleClick(user.id)} className="btn btn-block btn-outline-primary"> {user.username} </button>
+      <button key={user.id} onClick={() => handleClick(user.id)} className="btn btn-block btn-outline-primary"> {user.username} </button>
     ))
   }
   </div>

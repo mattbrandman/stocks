@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-const LoginForm = (props) => {
+const CreateUserForm = (props) => {
   const { handleSubmit } = props;
   return (
     <form onSubmit={handleSubmit}>
@@ -13,7 +13,7 @@ const LoginForm = (props) => {
         <label htmlFor="password"> Password </label>
         <Field name="password" className="form-control" component="input" type="text" />
       </div>
-      <button type="submit" className="btn btn-primary">Submit</button>
+      <button type="Create" className="btn btn-primary">Create User</button>
     </form>
   );
 };
@@ -22,5 +22,4 @@ const LoginForm = (props) => {
 export default reduxForm({
   // a unique name for the form
   form: 'login',
-})(LoginForm);
-
+})(CreateUserForm);

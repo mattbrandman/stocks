@@ -7,3 +7,7 @@ export default function goToStock(id) {
 export function goToUser(id) {
   return push(`/users/${id}`);
 }
+
+export function goToHome() {
+  return push('/');
+}
